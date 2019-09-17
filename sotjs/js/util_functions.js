@@ -12,18 +12,14 @@ var hostname = '';
 function getPollData(){
     return $.ajax({
         type: 'GET',
-        url: '/poll_data.json',
+        url: '/cache/2016-president.json',
     });
 }
 
 function getUserTimeline(screen_name, count) {
     return $.ajax({
         type: 'GET',
-        url: "/user_tweets.json",
-        data: {
-            screen_name: screen_name,
-            count: count,
-        },
+        url: `/cache/timeline_${screen_name}.json`,
         success: function(returnData) {
             obj = jQuery.parseJSON(JSON.stringify(returnData));
             console.log(screen_name+'timeline got');
@@ -35,10 +31,7 @@ function getUserTimeline(screen_name, count) {
 function getUserObject(screen_name) {
     return $.ajax({
         type: 'GET',
-        url: "/user_object.json",
-        data: {
-            screen_name: screen_name,
-        }
+        url: `/cache/user_${screen_name}.json`,
     });
 
 }
